@@ -21,7 +21,7 @@ namespace Installers
                 .UnderTransform(poolParentTransform);
             Container.Bind<GameManager>().FromNew().AsSingle();
             Container.Bind<DragManager>().FromNew().AsSingle();
-            Container.Bind<LocalizationManager>().FromNew().AsSingle();
+            Container.Bind<LocalizationManagerDebugConstantsKey>().FromNew().AsSingle();
             Container.BindInterfacesAndSelfTo<SaveLoadManager>().FromNew().AsSingle();
 
 

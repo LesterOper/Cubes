@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-
-namespace Core
+﻿namespace Core
 {
-    public class LocalizationManager
+    public class LocalizationManagerDebugConstantsKey
     {
         public static string outScreenSize = nameof(outScreenSize);
         public static string putCube = nameof(putCube);

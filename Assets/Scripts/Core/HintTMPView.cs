@@ -13,14 +13,14 @@ namespace Core
     {
         [SerializeField] private TextMeshProUGUI hint;
         private Tween _showHintTween;
-        [SerializeField]private LocalizeStringEvent _localizedString;
+        [SerializeField]private LocalizeStringEvent localizedString;
 
         [Inject] private SignalBus _signalBus;
 
         private void Awake()
         {
             _signalBus.Subscribe<LocalizeHintSignal>(UpdateTerm);
-            _localizedString.StringReference.StringChanged += ChangeLocale;
+            localizedString.StringReference.StringChanged += ChangeLocale;
         }
 
         private void ShowHint()
@@ -39,8 +39,8 @@ namespace Core
 
         private void UpdateTerm(LocalizeHintSignal signal)
         {
-            _localizedString.StringReference.TableEntryReference = signal.term;
-            _localizedString.RefreshString();
+            localizedString.StringReference.TableEntryReference = signal.term;
+            localizedString.RefreshString();
             ShowHint();
         }
     }

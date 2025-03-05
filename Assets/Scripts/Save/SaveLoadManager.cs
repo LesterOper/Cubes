@@ -21,8 +21,8 @@ namespace Save
 
         public void Save(Stack<CubeView> tower)
         {
-            _gameProgress ??= new GameProgress();
-            _gameProgress.cubes ??= new List<CubeProgressSaveData>();
+            _gameProgress = new GameProgress();
+            _gameProgress.cubes = new List<CubeProgressSaveData>();
             List<CubeView> towerList = tower.ToList();
             towerList.Reverse();
             for (int i = 0; i < towerList.Count; i++)

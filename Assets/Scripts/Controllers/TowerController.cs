@@ -18,10 +18,10 @@ namespace Controllers
         [Inject] private SaveLoadManager _saveLoadManager;
 
         private IGameplayCondition _gameplayCondition; 
-        public float _topPositionY;
-        public float _topScreenY;
-        public float _yBasePosition;
-        public float _yCubeSize;
+        private float _topPositionY;
+        private float _topScreenY;
+        private float _yBasePosition;
+        private float _yCubeSize;
 
         private void Awake()
         {
@@ -39,6 +39,11 @@ namespace Controllers
 
         public void AddLoadedCubeInTower(CubeView cubeView)
         {
+            if (_tower.Count == 0)
+            {
+                _yBasePosition = cubeView.transform.position.y;
+                _yCubeSize = cubeView.GetYSize();
+            }
             _tower.Push(cubeView);
             _topPositionY = _yBasePosition + _yCubeSize * _tower.Count;
         }
@@ -79,7 +84,7 @@ namespace Controllers
                     cube.SetOnTowerAnimation(upperPositionY);
                     
                     _tower.Push(cube);
-                    _signalBus.Fire(new LocalizeHintSignal() {term = LocalizationManager.putCube});
+                    _signalBus.Fire(new LocalizeHintSignal() {term = LocalizationManagerDebugConstantsKey.putCube});
                 }
                 else
                 {
@@ -89,7 +94,7 @@ namespace Controllers
             else
             {
                 _tower.Push(cube);
-                _signalBus.Fire(new LocalizeHintSignal() {term = LocalizationManager.putCube});
+                _signalBus.Fire(new LocalizeHintSignal() {term = LocalizationManagerDebugConstantsKey.putCube});
             }
             
             _topPositionY = _yBasePosition + _yCubeSize * _tower.Count;
@@ -98,7 +103,7 @@ namespace Controllers
         private void DespawnCube(CubeView cubeView)
         {
             cubeView.DestroyCubeAnimation(0);
-            _signalBus.Fire(new LocalizeHintSignal() {term = LocalizationManager.dropCube});
+            _signalBus.Fire(new LocalizeHintSignal() {term = LocalizationManagerDebugConstantsKey.dropCube});
         }
 
         private void TryRemoveCubeFromTower(CubeRemovedFromTowerSignal signal)
@@ -127,7 +132,7 @@ namespace Controllers
                     }
                     
                     signal.CubeView.StartDragging(signal.EventData);
-                    _signalBus.Fire(new LocalizeHintSignal() {term = LocalizationManager.dropCube});
+                    _signalBus.Fire(new LocalizeHintSignal() {term = LocalizationManagerDebugConstantsKey.dropCube});
                     UpdateTower();
                 }
                 else Debug.Log("Cant delete cube from tower");

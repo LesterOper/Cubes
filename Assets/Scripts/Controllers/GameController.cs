@@ -1,13 +1,9 @@
-﻿using System;
-using Configs;
+﻿using Configs;
 using Core;
-using Input;
 using Managers;
-using ObjectPools;
 using Save;
 using Signals;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using Zenject;
 
 namespace Controllers
@@ -67,7 +63,7 @@ namespace Controllers
         {
             if (!towerController.CanBuildHigher())
             {
-                _signalBus.Fire(new LocalizeHintSignal() {term = LocalizationManager.outScreenSize});
+                _signalBus.Fire(new LocalizeHintSignal() {term = LocalizationManagerDebugConstantsKey.outScreenSize});
                 return;
             }
             scrollController.EnableScroll(false);

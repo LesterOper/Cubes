@@ -47,19 +47,14 @@ namespace Core
             _dragManager.SetDraggableCubeView(this);
         }
 
-        public void HideCube()
-        {
-            gameObject.SetActive(false);
-        }
-        
         public void ShowCube()
         {
             gameObject.SetActive(true);
         }
 
-        public Tween SetOnTowerAnimation(float yPosition)
+        public void SetOnTowerAnimation(float yPosition)
         {
-            return transform.DOMoveY(yPosition, setOnTowerAnimationDuration).SetEase(setOnTowerCurve).OnComplete(() =>
+            transform.DOMoveY(yPosition, setOnTowerAnimationDuration).SetEase(setOnTowerCurve).OnComplete(() =>
             {
                 setTowerEffect.Play();
             });
@@ -81,14 +76,6 @@ namespace Core
             var yPosition = transform.position.y;
             yPosition += cubeRendererComponent.size.y;
             return yPosition;
-        }
-
-        public (float leftPositionLimit, float rightPositionLimit) GetLeftRightLimits()
-        {
-            var xPosition = transform.position.x;
-            var xLeftPositionLimit = xPosition - cubeRendererComponent.size.x / 2f;
-            var xRightPositionLimit = xPosition + cubeRendererComponent.size.x / 2f;
-            return (xLeftPositionLimit, xRightPositionLimit);
         }
 
         public float GetYSize() => cubeRendererComponent.size.y;

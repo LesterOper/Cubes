@@ -34,7 +34,7 @@ namespace Controllers
                 signal.CubeView.transform.DOMoveY(maskTr.position.y, 0.3f).OnComplete(() =>
                 {
                     _signalBus.Fire(new CubeReturnPoolSignal() {CubeView = signal.CubeView});
-                    _signalBus.Fire(new LocalizeHintSignal(){term = LocalizationManager.thrownCube});
+                    _signalBus.Fire(new LocalizeHintSignal(){term = LocalizationManagerDebugConstantsKey.thrownCube});
                     throwEffect.Play();
                 });
                 

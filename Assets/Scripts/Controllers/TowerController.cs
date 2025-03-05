@@ -174,7 +174,7 @@ namespace Controllers
 
         public bool CanBuildHigher()
         {
-            return _topPositionY + _yCubeSize <= _topScreenY;
+            return _topPositionY <= _topScreenY;
         }
     }
 }
